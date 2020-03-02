@@ -8,6 +8,8 @@ const Formulario = () => {
     pais: ""
   });
 
+  const [error, guardarError] = useState(false);
+
   // extraer ciudad y país (distr..)
 
   const { ciudad, pais } = busqueda;
@@ -23,25 +25,38 @@ const Formulario = () => {
     });
   };
 
+  // cuando el usuario da submit al formulario
+  const handleSubmit = e => {
+    e.preventDefaul();
+
+    // validar
+    if (ciudad.trim() === "" || pais.trim() === "") {
+      guardarError(true);
+      return;
+    }
+    guardarError(false);
+
+    // psar al componente principal
+  };
+
   return (
-    <form className="mt-5">
-      <div class="form-group row">
-        <label htmlfor="ciudad" class="col-sm-2 col-form-label">
+    <form className="mt-5" onSubmit={handleSubmit}>
+      <div className="form-group row">
+        <label htmlFor="ciudad" className="col-sm-2 col-form-label">
           Ciudad:
         </label>
 
-        <div class="col-sm-10 ">
+        <div className="col-sm-10 ">
           <input
             type="text"
-            readonly
             name="ciudad"
-            class="form-control-plaintext"
+            className="form-control-plaintext"
             id="ciudad"
             value={ciudad}
             onChange={handleChange}
           />
         </div>
-        <label htmlfor="pais" class="col-sm-2 col-form-label">
+        <label htmlFor="pais" className="col-sm-2 col-form-label">
           País:
         </label>
         <select
@@ -49,9 +64,8 @@ const Formulario = () => {
           id="pais"
           value={pais}
           onChange={handleChange}
-          class="form-control"
+          className="form-control"
         >
-          <option selected>--Seleccione un país --</option>
           <option value="AF">Afganistán</option>
           <option value="AL">Albania</option>
           <option value="DE">Alemania</option>
@@ -116,9 +130,7 @@ const Formulario = () => {
           <option value="AE">Emiratos Árabes Unidos</option>
           <option value="ER">Eritrea</option>
           <option value="SI">Eslovenia</option>
-          <option value="ES" selected>
-            España
-          </option>
+          <option value="ES">España</option>
           <option value="US">Estados Unidos</option>
           <option value="EE">Estonia</option>
           <option value="ET">Etiopía</option>
