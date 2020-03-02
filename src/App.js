@@ -6,11 +6,11 @@ import Footer from "./components/Footer";
 function App() {
   return (
     <Fragment>
-      <Header titulo="Clima"></Header>
-      <div>
-        <div>
-          <div>
-            <div>
+      <Header titulo="Pronóstico del Tiempo"></Header>
+      <div className="container">
+        <div className="row">
+          <div className="col">
+            <div className="col-6">
               <Formulario></Formulario>
             </div>
             <div>2</div>
