@@ -27,7 +27,7 @@ const Formulario = () => {
 
   // cuando el usuario da submit al formulario
   const handleSubmit = e => {
-    e.preventDefaul();
+    e.preventDefault();
 
     // validar
     if (ciudad.trim() === "" || pais.trim() === "") {
@@ -41,6 +41,11 @@ const Formulario = () => {
 
   return (
     <form className="mt-5" onSubmit={handleSubmit}>
+      {error ? (
+        <p className=" border border-danger text-center text-danger border border-danger ">
+          Todos los campos son obligatorios.
+        </p>
+      ) : null}
       <div className="form-group row">
         <label htmlFor="ciudad" className="col-sm-2 col-form-label">
           Ciudad:
@@ -302,6 +307,13 @@ const Formulario = () => {
           <option value="ZW">Zimbabue</option>
           <option>...</option>
         </select>
+      </div>
+      <div className=" ">
+        <input
+          className="col-12 bg-primary"
+          type="submit"
+          value="Buscar Clima"
+        ></input>
       </div>
     </form>
   );
